@@ -1,7 +1,7 @@
 const { TestScheduler } = require("jest");
 const { hasUncaughtExceptionCaptureCallback } = require("process");
 
-const { game, newGame, showScore, addTurn } = require("../game");
+const { game, newGame, showScore, addTurn, lightsOn } = require("../game");
 
 beforeAll(()=> {
     let fs = require("fs");
@@ -49,4 +49,27 @@ describe("newGame works correctly", ()=> {
     test("should display zero for element with id of score", ()=> {
         expect(document.getElementById("score").innerText).toEqual(0);
     });
+});
+
+describe("gameplay works correctly", ()=> {
+    beforeEach(()=> {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+        addTurn();
+    });
+    afterEach(()=> {
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+    });
+    test("addTurn add a new move to the game array", ()=> {
+        addTurn();
+        expect(game.currentGame.length).toBe(2);
+    });
+    test("should add correct class to button to light it up", ()=> {
+        let button = document.getElementById(game.currentGame[0]);
+        lightsOn(game.currentGame[0]);
+        expect(button.classList).toContain("light");
+    })
 });

@@ -24,4 +24,12 @@ function addTurn() {
     // showTurns();
 }
 
-module.exports = { game, newGame, showScore, addTurn };
+function lightsOn(circleId) {
+    document.getElementById(circleId).classList.add("light");
+    setTimeout(()=> {
+        document.getElementById(circleId).classList.remove("light");
+    }
+        , 400);
+}
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn };
