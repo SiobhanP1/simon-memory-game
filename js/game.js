@@ -2,6 +2,7 @@ let game = {
     score: 0,
     currentGame: [],
     playerMoves: [],
+    turnNumber: 0,
     choices: ["button1", "button2", "button3", "button4"],
 };
 
@@ -17,11 +18,10 @@ function showScore() {
     document.getElementById("score").innerText = game.score;
 };
 
-//Add call showTurns functions here to end of addTurn()
 function addTurn() {
     game.playerMoves = 0;
     game["currentGame"].push(game.choices[Math.floor(Math.random() * 4)]);
-    // showTurns();
+    showTurns();
 };
 
 function lightsOn(circleId) {
