@@ -7,8 +7,21 @@ let game = {
 
 function newGame() {
     game.score = 0;
-    game.playerMoves = 0;
-    game.currentGame = 0;
+    game.playerMoves = [];
+    game.currentGame = [];
+    showScore();
+    addTurn();
 }
 
-module.exports = { game, newGame };
+function showScore() {
+    document.getElementById("score").innerText = game.score;
+}
+
+//Add call showTurns functions here to end of addTurn()
+function addTurn() {
+    game.playerMoves = 0;
+    game["currentGame"].push(game.choices[Math.floor(Math.random() * 4)]);
+    // showTurns();
+}
+
+module.exports = { game, newGame, showScore, addTurn };

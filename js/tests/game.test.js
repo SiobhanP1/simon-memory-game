@@ -1,7 +1,7 @@
 const { TestScheduler } = require("jest");
 const { hasUncaughtExceptionCaptureCallback } = require("process");
 
-const { game, newGame } = require("../game");
+const { game, newGame, showScore, addTurn } = require("../game");
 
 beforeAll(()=> {
     let fs = require("fs");
@@ -32,15 +32,21 @@ describe("game object contains", ()=> {
 describe("newGame works correctly", ()=> {
     beforeAll(()=> {
         game.score = 42;
+        game.playerMoves = ["button1", "button2"];
+        game.currentGame = ["button1", "button2"];
+        document.getElementById("score").innerText = "42";
         newGame();
     });
     test("Should set game score to zero", ()=> {
         expect(game.score).toEqual(0);
     });
-    test("Should set currentGame to zero", ()=> {
-        expect(game.currentGame).toEqual(0);
+    test("Should be one move in the computer's game array", ()=> {
+        expect(game.currentGame.length).toEqual(1);
     });
-    test("Should set playerMoves to zero", ()=> {
+    test("Should clear the player moves array", ()=> {
         expect(game.playerMoves).toEqual(0);
+    });
+    test("should display zero for element with id of score", ()=> {
+        expect(document.getElementById("score").innerText).toEqual(0);
     });
 });
