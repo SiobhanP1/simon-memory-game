@@ -25,4 +25,7 @@ describe("game object contains", ()=> {
     test("choices key exists", ()=> {
         expect("choices" in game).toBe(true);
     });
+    test("choices array contains all four button ids", ()=> {
+        expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
+    })
 })
