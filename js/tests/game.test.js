@@ -1,7 +1,7 @@
 const { TestScheduler } = require("jest");
 const { hasUncaughtExceptionCaptureCallback } = require("process");
 
-const { game, newGame, showScore, addTurn, lightsOn } = require("../game");
+const { game, newGame, showScore, addTurn, lightsOn, showTurns } = require("../game");
 
 beforeAll(()=> {
     let fs = require("fs");
@@ -72,4 +72,10 @@ describe("gameplay works correctly", ()=> {
         lightsOn(game.currentGame[0]);
         expect(button.classList).toContain("light");
     })
+    test("showTurns should update game.turnNumber", ()=> {
+        game.turnNumber = 42;
+        showTurns();
+        expect(game.turnNumber).toBe(0);
+
+    });
 });

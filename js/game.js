@@ -11,18 +11,18 @@ function newGame() {
     game.currentGame = [];
     showScore();
     addTurn();
-}
+};
 
 function showScore() {
     document.getElementById("score").innerText = game.score;
-}
+};
 
 //Add call showTurns functions here to end of addTurn()
 function addTurn() {
     game.playerMoves = 0;
     game["currentGame"].push(game.choices[Math.floor(Math.random() * 4)]);
     // showTurns();
-}
+};
 
 function lightsOn(circleId) {
     document.getElementById(circleId).classList.add("light");
@@ -30,6 +30,17 @@ function lightsOn(circleId) {
         document.getElementById(circleId).classList.remove("light");
     }
         , 400);
-}
+};
 
-module.exports = { game, newGame, showScore, addTurn, lightsOn };
+function showTurns() {
+    game.turnNumber = 0;
+    let turns = setInterval(()=> {
+        lightsOn(game.currentGame[game.turnNumber]);
+        game.turnNumber++;
+        if (game.turnNumber >= game.currentGame.length) {
+            clearInterval(turns);
+        }
+    }, 800);
+};
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns };
