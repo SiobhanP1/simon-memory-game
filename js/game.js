@@ -10,6 +10,7 @@ function newGame() {
     game.score = 0;
     game.playerMoves = [];
     game.currentGame = [];
+    game.turnNumber = 0;
     showScore();
     addTurn();
 };
