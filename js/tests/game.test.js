@@ -32,10 +32,13 @@ describe("game object contains", ()=> {
     });
     test("lastButton key exists", ()=> {
         expect("lastButton" in game).toBe(true);
-    })
+    });
     test("turnInProgress key exists", ()=> {
         expect("turnInProgress" in game).toBe(true);
-    })
+    });
+    test("turnInProgress key value is false", ()=> {
+        expect(game.turnInProgress).toEqual(false);
+    });
 });
 
 describe("newGame works correctly", ()=> {
